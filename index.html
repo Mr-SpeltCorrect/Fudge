@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Fudge Plug | Handcrafted Homemade Fudge</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600;700&display=swap');
+        
+        :root {
+            --primary: #6B46C1;
+            --secondary: #F56565;
+            --accent: #F6E05E;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .logo-text {
+            font-family: 'Pacifico', cursive;
+        }
+        
+        .hero-pattern {
+            background-image: radial-gradient(circle, rgba(107, 70, 193, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        
+        .fudge-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .flavor-tag {
+            transition: all 0.3s ease;
+        }
+        
+        .flavor-tag:hover {
+            transform: scale(1.05);
+        }
+        
+        .flavor-tag.active {
+            transform: scale(1.1);
+            font-weight: 600;
+        }
+        
+        .fudge-item {
+            transition: all 0.3s ease;
+        }
+        
+        .hidden-flavor {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .visible-flavor {
+            display: block;
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-4">
+                    <div class="text-2xl logo-text text-purple-600">The Fudge Plug</div>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-800 hover:text-purple-600 transition">Home</a>
+                    <a href="#about" class="text-gray-800 hover:text-purple-600 transition">About</a>
+                    <a href="#flavors" class="text-gray-800 hover:text-purple-600 transition">Flavors</a>
+                    <a href="#testimonials" class="text-gray-800 hover:text-purple-600 transition">Reviews</a>
+                    <a href="#contact" class="text-gray-800 hover:text-purple-600 transition">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="menu-btn" class="text-gray-800 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <a href="#home" class="block py-2 text-gray-800 hover:text-purple-600 transition">Home</a>
+                <a href="#about" class="block py-2 text-gray-800 hover:text-purple-600 transition">About</a>
+                <a href="#flavors" class="block py-2 text-gray-800 hover:text-purple-600 transition">Flavors</a>
+                <a href="#testimonials" class="block py-2 text-gray-800 hover:text-purple-600 transition">Reviews</a>
+                <a href="#contact" class="block py-2 text-gray-800 hover:text-purple-600 transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-pattern py-20 md:py-32">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-12 md:mb-0">
+                <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mb-6">Handcrafted <span class="text-purple-600">Homemade</span> Fudge</h1>
+                <p class="text-lg text-gray-600 mb-8">Made with love, tradition, and the finest ingredients for a taste that melts in your mouth.</p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#flavors" class="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-full font-semibold text-center transition">Our Flavors</a>
+                    <a href="#contact" class="border-2 border-purple-600 text-purple-600 hover:bg-purple-50 px-8 py-3 rounded-full font-semibold text-center transition">Order Now</a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1603532648955-039310d9ed75?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Assorted fudge flavors" class="rounded-2xl shadow-xl w-full max-w-md transform rotate-2">
+                    <div class="absolute -bottom-6 -right-6 bg-yellow-300 text-purple-800 px-6 py-2 rounded-full font-bold shadow-lg">
+                        <span class="text-sm">Since 2012</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our <span class="text-purple-600">Story</span></h2>
+                <div class="w-24 h-1 bg-purple-600 mx-auto"></div>
+            </div>
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+                    <img src="https://images.unsplash.com/photo-1606787366850-de6330128bfc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Family making fudge" class="rounded-lg shadow-lg">
+                </div>
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">A Family Tradition</h3>
+                    <p class="text-gray-600 mb-4">The Fudge Plug began in our family kitchen over a decade ago, when Grandma Mary perfected her secret fudge recipe. What started as holiday gifts for friends and neighbors quickly grew into a beloved local business.</p>
+                    <p class="text-gray-600 mb-6">Today, we still make every batch by hand using the same traditional methods and high-quality ingredients that made Grandma Mary's fudge famous.</p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex items-center">
+                            <div class="bg-purple-100 p-3 rounded-full mr-3">
+                                <i class="fas fa-heart text-purple-600"></i>
+                            </div>
+                            <span class="font-medium">Made with Love</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-purple-100 p-3 rounded-full mr-3">
+                                <i class="fas fa-leaf text-purple-600"></i>
+                            </div>
+                            <span class="font-medium">Natural Ingredients</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-purple-100 p-3 rounded-full mr-3">
+                                <i class="fas fa-star text-purple-600"></i>
+                            </div>
+                            <span class="font-medium">Family Recipe</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-purple-100 p-3 rounded-full mr-3">
+                                <i class="fas fa-award text-purple-600"></i>
+                            </div>
+                            <span class="font-medium">Award Winning</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Flavors Section -->
+    <section id="flavors" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our <span class="text-purple-600">Flavors</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Explore our delicious selection of handcrafted fudge flavors. We're always experimenting with new creations!</p>
+                <div class="w-24 h-1 bg-purple-600 mx-auto mt-4"></div>
+            </div>
+            
+            <!-- Flavor Tags -->
+            <div class="flex flex-wrap justify-center gap-3 mb-12">
+                <span class="flavor-tag active bg-purple-600 text-white px-4 py-2 rounded-full cursor-pointer hover:bg-purple-700" data-category="all">All Flavors</span>
+                <span class="flavor-tag bg-red-100 text-red-800 px-4 py-2 rounded-full cursor-pointer hover:bg-red-200" data-category="classics">Classics</span>
+                <span class="flavor-tag bg-blue-100 text-blue-800 px-4 py-2 rounded-full cursor-pointer hover:bg-blue-200" data-category="seasonal">Seasonal</span>
+                <span class="flavor-tag bg-green-100 text-green-800 px-4 py-2 rounded-full cursor-pointer hover:bg-green-200" data-category="nutty">Nutty</span>
+                <span class="flavor-tag bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full cursor-pointer hover:bg-yellow-200" data-category="fruity">Fruity</span>
+                <span class="flavor-tag bg-pink-100 text-pink-800 px-4 py-2 rounded-full cursor-pointer hover:bg-pink-200" data-category="specialty">Specialty</span>
+            </div>
+            
+            <!-- Fudge Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="flavors-container">
+                <!-- Fudge Card 1 - Classic -->
+                <div class="fudge-card fudge-item visible-flavor" data-categories="classics">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1576186726115-4d51596775d1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Chocolate fudge" class="w-full h-64 object-cover">
+                            <div class="absolute top-4 right-4 bg-purple-600 text-white px-3 py-1 rounded-full text-sm font-semibold">Best Seller</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Classic Chocolate</h3>
+                            <p class="text-gray-600 mb-4">Rich, creamy, and perfectly sweet - our signature flavor that started it all.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-lg font-bold text-purple-600">$12.99/lb</span>
+                                <button class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-full text-sm font-semibold transition">Add to Order</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Fudge Card 2 - Classic -->
+                <div class="fudge-card fudge-item visible-flavor" data-categories="classics">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1606913072241-5a50710c4f1a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Peanut butter fudge" class="w-full h-64 object-cover">
+                            <div class="absolute top-4 right-4 bg-yellow-400 text-gray-800 px-3 py-1 rounded-full text-sm font-semibold">Nut Free Option</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Salted Caramel</h3>
+                            <p class="text-gray-600 mb-4">Buttery caramel with a hint of sea salt for the perfect sweet-salty balance.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-lg font-bold text-purple-600">$14.99/lb</span>
+                                <button class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-full text-sm font-semibold transition">Add to Order</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Fudge Card 3 - Seasonal -->
+                <div class="fudge-card fudge-item visible-flavor" data-categories="seasonal nutty">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1611250282006-4484dd3fba6b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Maple walnut fudge" class="w-full h-64 object-cover">
+                            <div class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">Seasonal</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Maple Walnut</h3>
+                            <p class="text-gray-600 mb-4">Pure maple syrup and crunchy walnuts in a smooth fudge base.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-lg font-bold text-purple-600">$15.99/lb</span>
+                                <button class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-full text-sm font-semibold transition">Add to Order</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fudge Card 4 - Nutty -->
+                <div class="fudge-card fudge-item hidden-flavor" data-categories="nutty">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1511381939415-9d5f9c3d7f1e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Pecan fudge" class="w-full h-64 object-cover">
+                            <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">Nutty</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Pecan Praline</h3>
+                            <p class="text-gray-600 mb-4">Buttery brown sugar fudge loaded with toasted pecans for a Southern twist.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-lg font-bold text-purple-600">$16.99/lb</span>
+                                <button class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-full text-sm font-semibold transition">Add to Order</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fudge Card 5 - Fruity -->
+                <div class="fudge-card fudge-item hidden-flavor" data-categories="fruity">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1559620192-032c4bc4674e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Strawberry fudge" class="w-full h-64 object-cover">
+                            <div class="absolute top-4 right-4 bg-pink-500 text-white px-3 py-1 rounded-full text-sm font-semibold">Fruity</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Strawberry Swirl</h3>
+                            <p class="text-gray-600 mb-4">Creamy vanilla fudge swirled with real strawberry puree for a fruity delight.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-lg font-bold text-purple-600">$14.99/lb</span>
+                                <button class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-full text-sm font-semibold transition">Add to Order</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fudge Card 6 - Specialty -->
+                <div class="fudge-card fudge-item hidden-flavor" data-categories="specialty">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1606914469631-bb0a4bda1a9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Espresso fudge" class="w-full h-64 object-cover">
+                            <div class="absolute top-4 right-4 bg-gray-700 text-white px-3 py-1 rounded-full text-sm font-semibold">Specialty</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Espresso Crunch</h3>
+                            <p class="text-gray-600 mb-4">Rich coffee-flavored fudge with chocolate-covered espresso beans for crunch.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-lg font-bold text-purple-600">$16.99/lb</span>
+                                <button class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-full text-sm font-semibold transition">Add to Order</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-block border-2 border-purple-600 text-purple-600 hover:bg-purple-50 px-8 py-3 rounded-full font-semibold transition">View All 20+ Flavors</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Sweet <span class="text-purple-600">Reviews</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Don't just take our word for it - see what our customers are saying!</p>
+                <div class="w-24 h-1 bg-purple-600 mx-auto mt-4"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-gray-50 p-8 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="flex -space-x-2">
+                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah J." class="w-12 h-12 rounded-full border-2 border-white">
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-semibold">Sarah J.</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"I've been ordering from The Fudge Plug for years. Their chocolate fudge is absolutely divine - creamy, rich, and melts perfectly in your mouth. It's become our family's holiday tradition!"</p>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-gray-50 p-8 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="flex -space-x-2">
+                            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Michael T." class="w-12 h-12 rounded-full border-2 border-white">
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-semibold">Michael T.</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"The salted caramel fudge is incredible! I ordered some for my office and it disappeared within minutes. Now I have to order double just to get my share. Worth every penny!"</p>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-gray-50 p-8 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="flex -space-x-2">
+                            <img src="https://randomuser.me/api/portraits/women/63.jpg" alt="Emily R." class="w-12 h-12 rounded-full border-2 border-white">
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-semibold">Emily R.</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"I love that they offer nut-free options for my son who has allergies. The vanilla bean fudge is his favorite, and I appreciate that they take food allergies so seriously."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact/Order Section -->
+    <section id="contact" class="py-20 bg-purple-600 text-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Order Your <span class="text-yellow-300">Fudge</span> Today</h2>
+                <p class="max-w-2xl mx-auto opacity-90">Ready to experience our delicious homemade fudge? Place your order or contact us with any questions.</p>
+                <div class="w-24 h-1 bg-yellow-300 mx-auto mt-4"></div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+                    <h3 class="text-2xl font-semibold mb-6">Contact Information</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-purple-700 p-3 rounded-full mr-4">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Our Shop</h4>
+                                <p class="opacity-90">123 Sweet Street, Dessertville, CA 90210</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-purple-700 p-3 rounded-full mr-4">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Call Us</h4>
+                                <p class="opacity-90">(555) 123-4567</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-purple-700 p-3 rounded-full mr-4">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Email Us</h4>
+                                <p class="opacity-90">hello@sweetdelights.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-purple-700 p-3 rounded-full mr-4">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Hours</h4>
+                                <p class="opacity-90">Tuesday-Saturday: 10am-6pm</p>
+                                <p class="opacity-90">Sunday: 12pm-5pm</p>
+                                <p class="opacity-90">Monday: Closed</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-2xl font-semibold mt-10 mb-6">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="bg-purple-700 hover:bg-purple-800 w-12 h-12 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="bg-purple-700 hover:bg-purple-800 w-12 h-12 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="bg-purple-700 hover:bg-purple-800 w-12 h-12 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-pinterest-p"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <form class="bg-white rounded-lg shadow-lg p-8 text-gray-800">
+                        <h3 class="text-2xl font-semibold mb-6 text-purple-600">Order Form</h3>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 mb-2" for="name">Full Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 mb-2" for="email">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 mb-2" for="phone">Phone Number</label>
+                            <input type="tel" id="phone" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 mb-2" for="flavor">Flavor Selection</label>
+                            <select id="flavor" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600">
+                                <option value="">Select a flavor</option>
+                                <option value="classic-chocolate">Classic Chocolate</option>
+                                <option value="salted-caramel">Salted Caramel</option>
+                                <option value="maple-walnut">Maple Walnut</option>
+                                <option value="vanilla-bean">Vanilla Bean</option>
+                                <option value="peanut-butter">Peanut Butter</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 mb-2" for="quantity">Quantity (lbs)</label>
+                            <input type="number" id="quantity" min="1" max="10" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600">
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 mb-2" for="message">Special Instructions</label>
+                            <textarea id="message" rows="3" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-lg font-semibold transition">Submit Order</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-8 md:mb-0">
+                    <div class="text-2xl logo-text text-white mb-4">The Fudge Plug</div>
+                    <p class="text-gray-400 max-w-xs">Handcrafted homemade fudge made with love and tradition since 2012.</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#home" class="text-gray-400 hover:text-white transition">Home</a></li>
+                            <li><a href="#about" class="text-gray-400 hover:text-white transition">About</a></li>
+                            <li><a href="#flavors" class="text-gray-400 hover:text-white transition">Flavors</a></li>
+                            <li><a href="#testimonials" class="text-gray-400 hover:text-white transition">Reviews</a></li>
+                            <li><a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">Information</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Shipping Policy</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Returns & Refunds</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">FAQ</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
+                        <p class="text-gray-400 mb-4">Subscribe to get updates on new flavors and special offers!</p>
+                        <form class="flex">
+                            <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-lg focus:outline-none text-gray-800 w-full">
+                            <button type="submit" class="bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-r-lg transition">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2023 The Fudge Plug. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-pinterest-p"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+        
+        // Simple form submission handler
+        const orderForm = document.querySelector('form');
+        if (orderForm) {
+            orderForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Thank you for your order! We will contact you shortly to confirm details.');
+                orderForm.reset();
+            });
+        }
+
+        // Flavor filtering functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const flavorTags = document.querySelectorAll('.flavor-tag');
+            const fudgeItems = document.querySelectorAll('.fudge-item');
+            
+            flavorTags.forEach(tag => {
+                tag.addEventListener('click', function() {
+                    // Remove active class from all tags
+                    flavorTags.forEach(t => t.classList.remove('active', 'text-white', 'bg-purple-600'));
+                    
+                    // Add active class to clicked tag
+                    this.classList.add('active');
+                    
+                    // Change background and text color based on category
+                    const category = this.getAttribute('data-category');
+                    if (category === 'all') {
+                        this.classList.add('bg-purple-600', 'text-white');
+                    } else if (category === 'classics') {
+                        this.classList.add('bg-red-600', 'text-white');
+                    } else if (category === 'seasonal') {
+                        this.classList.add('bg-blue-600', 'text-white');
+                    } else if (category === 'nutty') {
+                        this.classList.add('bg-green-600', 'text-white');
+                    } else if (category === 'fruity') {
+                        this.classList.add('bg-yellow-600', 'text-white');
+                    } else if (category === 'specialty') {
+                        this.classList.add('bg-pink-600', 'text-white');
+                    }
+                    
+                    // Filter fudge items
+                    fudgeItems.forEach(item => {
+                        const categories = item.getAttribute('data-categories').split(' ');
+                        
+                        if (category === 'all' || categories.includes(category)) {
+                            item.classList.remove('hidden-flavor');
+                            item.classList.add('visible-flavor');
+                        } else {
+                            item.classList.remove('visible-flavor');
+                            item.classList.add('hidden-flavor');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
